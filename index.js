@@ -1,9 +1,8 @@
 var inquirer = require('inquirer');
 var fs = require('fs');
 var generateMarkdown = require('./utils/generateMarkdown')
-// TODO: Include packages needed for this application
 
-// TODO: Create an array of questions for user input
+//generated questions to ask the user to input in the readme file
 const questions = [{
   type: 'input',
   name: 'github',
@@ -13,39 +12,54 @@ const questions = [{
   name: 'email',
   message: 'What is your email address?'
 }, {
-    type: 'input',
-    name: 'title',
-    message: 'What is the title?'
-  }, {
-    type: 'input',
-    name: 'description',
-    message: 'What is the description of your project?'
-  }, {
-    type: 'list',
-    name: 'license',
-    message: 'Choose your license',
-    choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'BSD 3', 'None'],
-  }
-];
+  type: 'input',
+  name: 'title',
+  message: 'What is the title?'
+}, {
+  type: 'input',
+  name: 'description',
+  message: 'What is the description of your project?'
+}, {
+  type: 'list',
+  name: 'license',
+  message: 'Choose your license',
+  choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'BSD 3', 'None'],
+}, {
+  type: 'input',
+  name: 'install',
+  message: 'What command should be run to install dependencies?'
+}, {
+  type: 'input',
+  name: 'test',
+  message: 'What command should be run to run tests?'
+}, {
+  type: 'input',
+  name: 'usage',
+  message: 'What does the user need to know about using the repo?'
+},{
+  type: 'input',
+  name: 'contribution',
+  message: 'What does the user need to know in order to contribute to the repo?'
+}];
 
-// TODO: Create a function to write README file
+//function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, generateMarkdown(data), function (err) {
-        if (err) throw err;
-        console.log('Saved!');
-      });
+  fs.writeFile(fileName, generateMarkdown(data), function (err) {
+    if (err) throw err;
+    console.log('Saved!');
+  });
 }
 
-// TODO: Create a function to initialize app
+//function to initialize application
 function init() {
+  inquirer
+    .prompt(questions)
+    .then((answers) => {
+      writeToFile("README.md", answers)
+    });
 }
 
-// Function call to initialize app
+// Function call to initialize application
 init();
 
-inquirer
-.prompt(questions)
-.then((answers) => {
-    writeToFile("readMe.md", answers)
-  });
 
