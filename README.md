@@ -11,7 +11,7 @@
 7. [Questions](#questions)
 
 ## [Description](#description)
-This application generates a detailed readme.md file by asking the user a myriad of questions pertaining to the new project. This readme file also returns links to the user's Github account and licensing information
+This application generates a detailed readme.md file by asking the user a myriad of questions pertaining to the new project. This readme file also returns links to the user's Github account and licensing information. This application is created using 100% Javascript. 
 
 ![This is the gif for the application](assets/readme.gif)`
 
